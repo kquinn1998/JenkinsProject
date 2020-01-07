@@ -1,0 +1,17 @@
+node {
+   stage('Fetch') {
+       git 'https://github.com/niamhcoleman/JenkinsPipeline.git'
+    }
+
+   stage('Build') {
+        bat '''
+        javac -cp "C:\Users\kevin\.p2\pool\plugins\org.junit_4.12.0.v201504281640";. "Student.java" "StudentTest.java"
+        '''
+   }
+
+   stage('Test') {
+        bat '''
+        java -cp "C:\Users\kevin\.p2\pool\plugins\org.junit_4.12.0.v201504281640";. org.junit.runner.JUnitCore "StudentTest"
+        '''
+   }
+}
